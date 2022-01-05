@@ -23,7 +23,6 @@ FinanceX is a minimal and responsive stock trading website that uses IEX Cloud A
     │   └── register.html
     ├── app.py
     ├── financeX.db
-    ├── IEX_Cloud.http
     ├── manage.py
     ├── README.md
     └── requirements.txt

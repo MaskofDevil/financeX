@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+: Error
+{% endblock %}
+
+{% block main %}
+<section class="error">
+    <p class="bold">{{ top | urlencode }}</p>
+    <svg width="2" height="30" viewBox="0 0 2 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 0L0.999997 60" stroke="#CBD5E1" stroke-width="2" />
+    </svg>
+    <p class="bold">{{ bottom | urlencode }}</p>
+</section>
+<button class="btn btn-one margin-top bold" onclick="history.back(-1)">Back</button>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+: Register
+{% endblock %}
+
+{% block main %}
+<form action="/change" method="post">
+    <input autocomplete="off" autofocus type="password" name="old_password" placeholder="Old Password">
+    <input class="margin-top" type="password" name="new_password" placeholder="New Password">
+    <input class="margin-top" type="password" name="confirm_password" placeholder="Re-type new password">
+    <button class="btn btn-two margin-top bold" type="submit">Change Password</button>
+</form>
+{% endblock %}

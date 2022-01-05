@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+: Log In
+{% endblock %}
+
+{% block main %}
+<form action="/login" method="post">
+    <input autocomplete="off" autofocus type="text" name="username" placeholder="Username">
+    <input class="margin-top" autocomplete="off" type="password" name="password" placeholder="Password">
+    <button class="btn btn-one margin-top bold" type="submit">Login</button>
+    <p class="margin-top">Don't have an account? <a href="/register" class="color-yellow bold">Register now</a></p>
+</form>
+{% endblock %}

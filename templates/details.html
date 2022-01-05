@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+: {{ look['symbol'] }} Details
+{% endblock %}
+
+{% block main %}
+<form action="/home/{{ look['symbol'] }}" class="card" method="post">
+    <object class="company-logo" data="https://storage.googleapis.com/iex/api/logos/{{ look['symbol'] }}.png"></object>
+    <h3>{{ look['symbol'] }}</h3>
+    <legend>{{ look['name'] }}</legend>
+    {% if info['website'] %}
+    <a href="https://{{ info['website'] }}" class="color-green bold" target="_blank">{{ info['website'] }}
+        <svg width="22" height="7" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.22484 6.00004C2.22484 4.14754 3.73067 2.64171 5.58317 2.64171H9.9165V0.583374H5.58317C2.59317 0.583374 0.166504 3.01004 0.166504 6.00004C0.166504 8.99004 2.59317 11.4167 5.58317 11.4167H9.9165V9.35837H5.58317C3.73067 9.35837 2.22484 7.85254 2.22484 6.00004ZM6.6665 7.08337H15.3332V4.91671H6.6665V7.08337ZM16.4165 0.583374H12.0832V2.64171H16.4165C18.269 2.64171 19.7748 4.14754 19.7748 6.00004C19.7748 7.85254 18.269 9.35837 16.4165 9.35837H12.0832V11.4167H16.4165C19.4065 11.4167 21.8332 8.99004 21.8332 6.00004C21.8332 3.01004 19.4065 0.583374 16.4165 0.583374Z" fill="#22C55E" />
+        </svg>
+    </a>
+    {% endif %}
+    <legend>{{ info['exchange'] }}</legend>
+    {% if info['sector'] %}
+    <div class="tag">{{ info['sector'] }}</div>
+    {% endif %}
+    <h3>{{ look['price'] | usd }}</h3>
+    <div>
+        <input autofocus autocomplete="off" type="number" min="1" max="100" name="shares" required>
+        <button type="submit" class="btn btn-one bold">Buy</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+: Home
+{% endblock %}
+
+{% block main %}
+<form action="/home" method="post" class="search margin-top">
+    <p><svg id="dollar" width="25" height="25" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 0C9.856 0 0 9.856 0 22C0 34.144 9.856 44 22 44C34.144 44 44 34.144 44 22C44 9.856 34.144 0 22 0ZM23.936 34.672V37.4H20.086V34.562C18.458 34.166 14.828 32.868 13.442 28.05L17.072 26.576C17.204 27.06 18.348 31.174 22.352 31.174C24.398 31.174 26.708 30.118 26.708 27.632C26.708 25.52 25.168 24.42 21.692 23.166C19.272 22.308 14.322 20.9 14.322 15.884C14.322 15.664 14.344 10.604 20.086 9.372V6.6H23.936V9.328C27.984 10.032 29.458 13.266 29.788 14.234L26.312 15.708C26.07 14.938 25.014 12.76 22.132 12.76C20.592 12.76 18.15 13.574 18.15 15.818C18.15 17.908 20.042 18.7 23.958 19.998C29.238 21.824 30.58 24.508 30.58 27.588C30.58 33.374 25.08 34.474 23.936 34.672Z" fill="url(#paint0_linear_64_6)" />
+            <defs>
+                <linearGradient id="paint0_linear_64_6" x1="22" y1="0" x2="22" y2="44" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#334155" />
+                    <stop offset="1" stop-color="#64748B" />
+                </linearGradient>
+            </defs>
+        </svg>
+        {{ cash | usd }} &nbsp;
+        {% if totalDiff %}
+        {% if totalDiff > 0 %}
+        <svg width="18" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 8L1.41 9.41L7 3.83V16H9V3.83L14.58 9.42L16 8L8 0L0 8Z" fill="#4ADE80" />
+        </svg>
+        <span class="color-green">{{ totalDiff }}</span>
+        {% else %}
+        <svg width="18" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z" fill="#F87171" />
+        </svg>
+        <span class="color-red">{{ totalDiff }}</span>
+        {% endif %}
+        {% endif %}
+    </p>
+    <label for="symbol" class="margin-top">
+        <input autocomplete="off" autofocus name="symbol" type="text" placeholder="Symbol" spellcheck="false" required>
+    </label>
+</form>
+{% if rows %}
+<div class="container margin-top">
+    <h3>Owned Shares</h3>
+    <div class="shares">
+        {% for r in rows %}
+        <form action="/home" method="post" class="card">
+            <object class="company-logo" data="https://storage.googleapis.com/iex/api/logos/{{ r['symbol'] }}.png"></object>
+            <h3>{{ r['symbol'] }}</h3>
+            <legend>{{ r['name'] }}</legend>
+            <mark>{{ r['shares'] }}</mark>
+            <div class="price">
+                <h3>{{ r['price'] | usd }}</h3>
+                {% if r["diff"] %}
+                {% if r["diff"] > 0 %}
+                <svg width="18" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 8L1.41 9.41L7 3.83V16H9V3.83L14.58 9.42L16 8L8 0L0 8Z" fill="#4ADE80" />
+                </svg>
+                <span class="color-green">{{ r["diff"] }}</span>
+                {% else %}
+                <svg width="18" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z" fill="#F87171" />
+                </svg>
+                <span class="color-red">{{ r["diff"] }}</span>
+                {% endif %}
+                {% endif %}
+            </div>
+            <div>
+                <input name="shares" type="number" min="1" max="100" required>
+                <button class="btn btn-one bold" name="sell" type="submit" value="{{ r['symbol'] }}">Sell</button>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

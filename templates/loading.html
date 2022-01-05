@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}
+: Loading
+{% endblock %}
+
+{% block main %}
+<img class="loading" src="../static/loading.gif" alt="Loading...">
+<script>window.location.replace('/home')</script>
+{% endblock %}
