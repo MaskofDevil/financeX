@@ -1,5 +1,7 @@
 # FinanceX - Quote, Buy and Sell Stocks
 
+![financeX](https://user-images.githubusercontent.com/66861616/150557091-ce16d0e4-bda9-43ba-b3d8-18f4848cbbd8.png)
+
 #### Description:
 
 FinanceX is a minimal and responsive stock trading website that uses IEX Cloud API to quote, buy and sell stocks of various companies.
