@@ -47,4 +47,4 @@ FinanceX is a minimal and responsive stock trading website that uses IEX Cloud A
 ##### Future scopes:
 1. Payment gateway integration
 
-## ⭐Star this repo
+### ⭐ Star this repo
