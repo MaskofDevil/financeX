@@ -6,6 +6,8 @@
 
 FinanceX is a minimal and responsive stock trading website that uses IEX Cloud API to quote, buy and sell stocks of various companies.
 
+## ⭐Star this repo
+
 ##### Project Structure:
     financeX/
     ├── static/
